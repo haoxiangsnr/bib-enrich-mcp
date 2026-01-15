@@ -3,7 +3,7 @@
 [![PyPI version](https://badge.fury.io/py/bib-enrich-mcp.svg)](https://badge.fury.io/py/bib-enrich-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-An MCP (Model Context Protocol) server that fixes and enriches BibTeX bibliography files with metadata from academic sources like arXiv, DBLP, and CrossRef.
+Writing a paper and your `.bib` file is a mess? This tool lets AI automatically complete your citations — fill in missing metadata, find publication venues, add DOIs, and even discover if a preprint has been formally published.
 
 ## Features
 
@@ -29,6 +29,44 @@ git clone https://github.com/haoxiangsnr/bib-enrich-mcp.git
 cd bib-enrich-mcp
 uv sync
 ```
+
+## Quick Start
+
+### Step 1: Configure MCP Client
+
+Add the server to your MCP client (e.g., Cherry Studio, Claude Desktop, Cursor):
+
+```json
+{
+  "mcpServers": {
+    "bib-enrich": {
+      "command": "bib-enrich-mcp"
+    }
+  }
+}
+```
+
+### Step 2: Enable the MCP Server
+
+In your MCP client, enable the `bib-enrich` server. Look for a tools icon (usually a wrench) in the chat interface.
+
+### Step 3: Start Using
+
+Now you can ask the AI to help with your bibliography. Example prompts:
+
+```
+Help me find the complete citation for: Attention Is All You Need
+```
+
+```
+Enrich this BibTeX entry with arXiv ID 2401.12345
+```
+
+```
+Process my references.bib file and fill in missing metadata
+```
+
+The AI will automatically call the appropriate tools to fetch metadata from arXiv, DBLP, and CrossRef.
 
 ## Usage
 
