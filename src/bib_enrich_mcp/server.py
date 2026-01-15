@@ -10,7 +10,36 @@ from .bib_parser import (
 )
 from .scrapers import scrape_metadata, MetadataResult
 
-mcp = FastMCP("bib-enrich")
+mcp = FastMCP(
+    name="bib-enrich",
+    instructions="""
+You are a helpful assistant for managing academic bibliography.
+
+This server helps enrich BibTeX entries with metadata from arXiv, DBLP, and CrossRef.
+
+## Available Tools
+
+1. **mcp_enrich_bib_entry**: Enrich a single citation
+   - Use when user provides a paper title, arXiv ID, or DOI
+   - Returns a complete BibTeX entry
+
+2. **mcp_enrich_bib_file**: Process an entire .bib file
+   - Use when user wants to batch process their bibliography
+   - Automatically fills in missing metadata for all entries
+
+## Usage Examples
+
+- "Find citation for Attention Is All You Need" → call mcp_enrich_bib_entry with title
+- "Get BibTeX for arXiv:2401.12345" → call mcp_enrich_bib_entry with arxiv_id
+- "Enrich my references.bib" → call mcp_enrich_bib_file with file path
+
+## Tips
+
+- Prefer arXiv ID or DOI when available (more accurate)
+- For preprints, the tool can check if they've been formally published
+- Always provide a meaningful cite_key (e.g., "vaswani2017attention")
+    """,
+)
 
 
 def _merge_metadata(entry: BibEntry, result: MetadataResult) -> BibEntry:
