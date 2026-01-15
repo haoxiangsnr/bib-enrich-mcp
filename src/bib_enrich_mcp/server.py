@@ -10,7 +10,7 @@ from .bib_parser import (
 )
 from .scrapers import scrape_metadata, MetadataResult
 
-mcp = FastMCP("bib-fix")
+mcp = FastMCP("bib-enrich")
 
 
 def _merge_metadata(entry: BibEntry, result: MetadataResult) -> BibEntry:
